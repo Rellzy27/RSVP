@@ -9,14 +9,30 @@
             @csrf
             <!-- Name -->
             <flux:input
-                name="name"
-                :label="__('Name')"
+                name="nama"
+                :label="__('Nama')"
                 type="text"
                 required
                 autofocus
-                autocomplete="name"
+                autocomplete="nama"
                 :placeholder="__('Full name')"
             />
+
+            <!-- Username -->
+            <flux:input
+                name="username"
+                :label="__('Username')"
+                type="text"
+                required
+                autocomplete="username"
+                :placeholder="__('Username')"
+            />
+
+            <!-- Role -->
+            <flux:select name="role" :label="__('Role')" required>
+                <option value="admin">Admin</option>
+                <option value="user">User</option>
+            </flux:select>
 
             <!-- Email Address -->
             <flux:input
