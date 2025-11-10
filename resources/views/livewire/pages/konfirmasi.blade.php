@@ -6,7 +6,7 @@ use Livewire\Volt\Component;
 use Livewire\WithFileUploads;
 use Livewire\Attributes\Validate;
 
-new #[Layout('components.layouts.auth.simple', ['title' => 'Konfirmasi Pembayaran'])] class extends Component {
+new #[Layout('components.layouts.public', ['title' => 'Konfirmasi Pembayaran'])] class extends Component {
     use WithFileUploads;
 
     #[Validate('required|string|max:255')]
@@ -79,13 +79,6 @@ new #[Layout('components.layouts.auth.simple', ['title' => 'Konfirmasi Pembayara
 
 <div class="flex flex-col gap-6 w-full">
     <x-auth-header :title="__('Konfirmasi Pembayaran')" :description="__('Unggah bukti bayar Anda di sini.')" />
-
-    <!-- Navigasi Halaman -->
-    <div class="flex justify-center gap-4 text-sm">
-        <a href="{{ route('home') }}" wire:navigate class="font-medium text-primary-600 hover:text-primary-500">Daftar</a>
-        <a href="{{ route('konfirmasi') }}" wire:navigate class="font-medium text-primary-600 hover:text-primary-500">Konfirmasi Bayar</a>
-        <a href="{{ route('tiket') }}" wire:navigate class="font-medium text-primary-600 hover:text-primary-500">Cek Tiket</a>
-    </div>
 
     @if ($success_message)
         <div class="p-4 text-sm text-green-700 bg-green-100 rounded-lg dark:bg-green-200 dark:text-green-800" role="alert">

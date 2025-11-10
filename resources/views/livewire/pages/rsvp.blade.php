@@ -143,19 +143,8 @@ new #[Layout('components.layouts.public', ['title' => 'Pendaftaran Amazing Journ
 <div class="flex flex-col gap-6 w-full">
 
     <div class="flex flex-col items-center text-center">
-        <img src="https" 
-             onerror="this.src='https://placehold.co/400x200/0B1846/FFFFFF?text=Amazing+Journey+6&font=Inter';" 
-             alt="Amazing Journey 6 Poster" 
-             class="w-full max-w-xs rounded-lg shadow-lg mb-4">
         <h1 class="text-2xl font-bold text-gray-900 dark:text-white">Pendaftaran Amazing Journey 6</h1>
         <p class="text-gray-600 dark:text-gray-400">Magical World of Hope (6-12 Tahun)</p>
-    </div>
-
-    <!-- Navigasi Halaman -->
-    <div class="flex justify-center gap-4 text-sm">
-        <a href="{{ route('home') }}" wire:navigate class="font-medium text-primary-600 hover:text-primary-500">Daftar</a>
-        <a href="{{ route('konfirmasi') }}" wire:navigate class="font-medium text-primary-600 hover:text-primary-500">Konfirmasi Bayar</a>
-        <a href="{{ route('tiket') }}" wire:navigate class="font-medium text-primary-600 hover:text-primary-500">Cek Tiket</a>
     </div>
 
     @if (session('error'))
@@ -201,14 +190,13 @@ new #[Layout('components.layouts.public', ['title' => 'Pendaftaran Amazing Journ
             @foreach ($participants as $index => $participant)
                 <div class="p-4 border rounded-lg dark:border-zinc-700" wire:key="participant-{{ $index }}">
                     
-                    <!-- [PERBAIKAN] Menggunakan Flexbox untuk mensejajarkan Judul dan Tombol Hapus -->
                     <div class="flex justify-between items-center mb-4">
                         <h3 class="text-lg font-semibold dark:text-white">Peserta {{ $index + 1 }}</h3>
                         
                         @if (count($participants) > 1)
                             <flux:button type="button" variant="danger" size="sm" 
                                          wire:click.prevent="removeParticipant({{ $index }})" 
-                                         class="!p-2"> <!-- [PERBAIKAN] Menghapus class 'absolute' -->
+                                         class="!p-2">
                                 <svg class="size-4" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                     viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                                     stroke-linejoin="round">

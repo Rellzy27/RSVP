@@ -8,7 +8,7 @@ use BaconQrCode\Renderer\Image\SvgImageBackEnd;
 use BaconQrCode\Renderer\RendererStyle\RendererStyle;
 use BaconQrCode\Writer;
 
-new #[Layout('components.layouts.auth.simple', ['title' => 'Cek Tiket'])] class extends Component {
+new #[Layout('components.layouts.public', ['title' => 'Cek Tiket'])] class extends Component {
     
     #[Validate('required|string|max:255')]
     public string $lookup_value = ''; // Bisa ID Invoice, Nama, atau No HP
@@ -55,13 +55,6 @@ new #[Layout('components.layouts.auth.simple', ['title' => 'Cek Tiket'])] class 
 
 <div class="flex flex-col gap-6 w-full">
     <x-auth-header :title="__('Cek E-Tiket Anda')" :description="__('Lihat status pembayaran dan e-tiket Anda.')" />
-
-    <!-- Navigasi Halaman -->
-    <div class="flex justify-center gap-4 text-sm">
-        <a href="{{ route('home') }}" wire:navigate class="font-medium text-primary-600 hover:text-primary-500">Daftar</a>
-        <a href="{{ route('konfirmasi') }}" wire:navigate class="font-medium text-primary-600 hover:text-primary-500">Konfirmasi Bayar</a>
-        <a href="{{ route('tiket') }}" wire:navigate class="font-medium text-primary-600 hover:text-primary-500">Cek Tiket</a>
-    </div>
 
     @if ($error_message)
         <div class="p-4 text-sm text-red-700 bg-red-100 rounded-lg dark:bg-red-200 dark:text-red-800" role="alert">
