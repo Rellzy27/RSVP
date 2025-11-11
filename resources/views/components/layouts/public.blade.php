@@ -15,9 +15,9 @@
                         <div class="flex">
                             <!-- Logo -->
                             <div class="flex-shrink-0 flex items-center">
-                                <a href="{{ route('home') }}" wire:navigate>
+                                <!-- <a href="{{ route('home') }}" wire:navigate>
                                     <x-app-logo-icon class="h-9 w-9 fill-current text-black dark:text-white" />
-                                </a>
+                                </a> -->
                                 <a href="{{ route('home') }}" wire:navigate class="font-bold ml-2 text-lg text-gray-900 dark:text-white">
                                     Amazing Journey 6
                                 </a>

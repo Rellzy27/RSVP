@@ -117,7 +117,7 @@ new #[Layout('components.layouts.public', ['title' => 'Pendaftaran Amazing Journ
 
             // 3. Hitung total bayar
             $unique_code = $reg->id; // Kode unik adalah ID pendaftaran
-            $total_amount = (count($this->participants) * $this->ticket_price) + $unique_code;
+            $total_amount = (count($this->participants) * $this->ticket_price);
             $invoice_id = 'AJ6-' . now()->format('ymd') . '-' . $reg->id;
 
             // 4. Update data pendaftaran
@@ -170,7 +170,7 @@ new #[Layout('components.layouts.public', ['title' => 'Pendaftaran Amazing Journ
             <flux:input
                 wire:model="nomor_hp"
                 :label="__('Nomor WhatsApp (No WA)')"
-                type="tel"
+                type="number"
                 required
                 autocomplete="tel"
                 placeholder="08123456789"
@@ -275,7 +275,6 @@ new #[Layout('components.layouts.public', ['title' => 'Pendaftaran Amazing Journ
             <hr class="dark:border-zinc-700">
             <div class="space-y-2 text-sm dark:text-zinc-300">
                 <p class="flex justify-between"><span>Harga Tiket:</span> <span>Rp {{ number_format($ticket_price, 0, ',', '.') }} x {{ $registration->participants->count() }} Peserta</span></p>
-                <p class="flex justify-between"><span>Kode Unik:</span> <span>Rp {{ number_format($registration->unique_code, 0, ',', '.') }}</span></p>
                 <p class="flex justify-between text-lg font-bold dark:text-white">
                     <span>Total Pembayaran:</span> 
                     <span>Rp {{ number_format($registration->total_amount, 0, ',', '.') }}</span>

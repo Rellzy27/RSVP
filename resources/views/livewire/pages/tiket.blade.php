@@ -44,11 +44,15 @@ new #[Layout('components.layouts.public', ['title' => 'Cek Tiket'])] class exten
      */
     public function getQrCodeSvg(string $ticketCode): string
     {
-        $renderer = new SvgImageBackEnd();
-        $rendererStyle = new RendererStyle(200, 0); // Ukuran 200px, margin 0
-        $writer = new Writer($renderer, $rendererStyle);
-        
-        // Mengembalikan string SVG
+        $backend = new SvgImageBackEnd();
+
+        $renderer = new ImageRenderer(
+            new RendererStyle(200), // <-- You can change the size (in pixels)
+            $backend
+        );
+    
+        $writer = new Writer($renderer);
+
         return $writer->writeString($ticketCode);
     }
 }; ?>
@@ -78,7 +82,7 @@ new #[Layout('components.layouts.public', ['title' => 'Cek Tiket'])] class exten
             <flux:input
                 wire:model="nomor_hp_lookup"
                 :label="__('No. HP (Isi jika mencari pakai nama)')"
-                type="tel"
+                type="number"
                 placeholder="08123456789"
             />
             

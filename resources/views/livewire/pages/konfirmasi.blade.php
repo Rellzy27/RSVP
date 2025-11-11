@@ -108,7 +108,7 @@ new #[Layout('components.layouts.public', ['title' => 'Konfirmasi Pembayaran'])]
             <flux:input
                 wire:model="nomor_hp_lookup"
                 :label="__('No. HP (Isi jika mencari pakai nama)')"
-                type="tel"
+                type="number"
                 placeholder="08123456789"
             />
             
