@@ -112,7 +112,7 @@ new #[Layout('components.layouts.public', ['title' => 'Cek Tiket'])] class exten
             
             @foreach ($registration->participants as $participant)
                 <div class="p-4 border rounded-lg dark:border-zinc-700" wire:key="participant-ticket-{{ $participant->id }}">
-                    <p class="font-bold text-lg dark:text-white">{{ $participant->nama_anak }} ({{ $participant->usia }} thn)</p>
+                    <p class="font-bold text-lg dark:text-white">{{ $participant->nama }} ({{ $participant->usia }} thn)</p>
                     <p class="text-sm dark:text-zinc-400">{{ $participant->nama_panggilan }} | {{ $participant->jenis_kelamin }}</p>
                     <hr class="my-4 dark:border-zinc-700">
 

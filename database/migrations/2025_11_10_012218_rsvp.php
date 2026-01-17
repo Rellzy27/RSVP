@@ -28,7 +28,7 @@ return new class extends Migration
             $table->foreignId('registration_id')->constrained('registrations')->onDelete('cascade');
             $table->string('ticket_code')->unique()->nullable(); // Kode unik QR (misal: 25110710001)
             
-            $table->string('nama_anak');
+            $table->string('nama');
             $table->string('nama_panggilan');
             $table->string('jenis_kelamin');
             $table->integer('usia');

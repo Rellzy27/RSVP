@@ -10,14 +10,14 @@ use Livewire\Attributes\Validate;
 
 new #[Layout('components.layouts.public', ['title' => 'Pendaftaran Amazing Journey 6'])] class extends Component {
     
-    // Properti untuk data Pendaftar (Orang Tua)
+    // Properti untuk data Pendaftar
     #[Validate('required|string|min:3|max:255')]
     public string $nama_pendaftar = '';
     
     #[Validate('required|string|min:10|max:15')]
     public string $nomor_hp = '';
 
-    // Properti untuk data Peserta (Anak)
+    // Properti untuk data Peserta
     #[Validate('required|array|min:1')]
     public array $participants = [];
 
@@ -34,7 +34,7 @@ new #[Layout('components.layouts.public', ['title' => 'Pendaftaran Amazing Journ
     protected function participantValidationRules(): array
     {
         return [
-            'participants.*.nama_anak' => 'required|string|max:255',
+            'participants.*.nama' => 'required|string|max:255',
             'participants.*.nama_panggilan' => 'required|string|max:255',
             'participants.*.jenis_kelamin' => 'required|string|in:Laki-laki,Perempuan',
             'participants.*.usia' => 'required|integer|min:6|max:12',
@@ -45,7 +45,7 @@ new #[Layout('components.layouts.public', ['title' => 'Pendaftaran Amazing Journ
     }
     
     /**
-     * Pindah ke langkah 2 (Data Anak)
+     * Pindah ke langkah 2
      */
     public function nextStep(): void
     {
@@ -68,7 +68,7 @@ new #[Layout('components.layouts.public', ['title' => 'Pendaftaran Amazing Journ
     public function addParticipant(): void
     {
         $this->participants[] = [
-            'nama_anak' => '',
+            'nama' => '',
             'nama_panggilan' => '',
             'jenis_kelamin' => 'Laki-laki',
             'usia' => 6,
@@ -97,7 +97,7 @@ new #[Layout('components.layouts.public', ['title' => 'Pendaftaran Amazing Journ
         try {
             DB::beginTransaction();
 
-            // 1. Buat data Pendaftar (Orang Tua)
+            // 1. Buat data Pendaftar
             $reg = Registration::create([
                 'nama_pendaftar' => $this->nama_pendaftar,
                 'nomor_hp' => $this->nomor_hp,
@@ -106,7 +106,7 @@ new #[Layout('components.layouts.public', ['title' => 'Pendaftaran Amazing Journ
                 'total_amount' => 0, // sementara
             ]);
 
-            // 2. Buat data Peserta (Anak)
+            // 2. Buat data Peserta
             foreach ($this->participants as $data) {
                 $participant = $reg->participants()->create($data);
                 
@@ -153,7 +153,7 @@ new #[Layout('components.layouts.public', ['title' => 'Pendaftaran Amazing Journ
         </div>
     @endif
 
-    <!-- LANGKAH 1: Data Pendaftar (Orang Tua) -->
+    <!-- LANGKAH 1: Data Pendaftar -->
     @if ($step === 1)
         <form wire:submit="nextStep" class="flex flex-col gap-6">
             <x-auth-header :title="__('Langkah 1: Data Pendaftar (Orang Tua)')" :description="__('Masukkan nama dan nomor WhatsApp Anda.')" />
@@ -182,7 +182,7 @@ new #[Layout('components.layouts.public', ['title' => 'Pendaftaran Amazing Journ
         </form>
     @endif
 
-    <!-- LANGKAH 2: Data Peserta (Anak) -->
+    <!-- LANGKAH 2: Data Peserta -->
     @if ($step === 2)
         <form wire:submit="submitRegistration" class="flex flex-col gap-6">
             <x-auth-header :title="__('Langkah 2: Data Peserta (Anak)')" :description="__('Masukkan data anak yang akan mendaftar.')" />
@@ -211,7 +211,7 @@ new #[Layout('components.layouts.public', ['title' => 'Pendaftaran Amazing Journ
 
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <flux:input
-                            wire:model="participants.{{ $index }}.nama_anak"
+                            wire:model="participants.{{ $index }}.nama"
                             :label="__('Nama Lengkap Anak')"
                             type="text" required
                         />
